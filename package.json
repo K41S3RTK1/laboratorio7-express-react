@@ -1,0 +1,10 @@
+{
+  "name": "laboratorio6-node",
+  "version": "1.0.0",
+  "description": "Laboratorio 6 de Node.js",
+  "main": "servidor.js",
+  "type": "module",
+  "scripts": {
+    "start": "node servidor.js"
+  }
+}
