@@ -1,92 +1,174 @@
-# Laboratorio 6 - Node.js
+# Laboratorio 7 - Express y React
 
 ## Descripción
-En este laboratorio se corrigió un servidor con errores y luego se modificó para agregar nuevas rutas y respuestas en formato JSON.
 
-## Parte 1: corrección del archivo original
+Este repositorio contiene el desarrollo del Laboratorio 7 del curso Sistemas y Tecnologías Web.
 
-### Errores encontrados
-1. Había errores de sintaxis en la estructura general del servidor.
-2. La ruta `/info` no estaba preparada correctamente para responder como se esperaba.
-3. La ruta `/api/student` no leía correctamente el archivo JSON.
-4. La respuesta 404 no estaba bien manejada.
-5. Algunas rutas no funcionaban correctamente hasta corregir la lógica del servidor.
+El laboratorio se divide en dos partes principales:
 
-### Correcciones realizadas
-1. Se corrigió la estructura general del servidor para que pudiera ejecutarse sin errores.
-2. Se corrigió la lectura del archivo `datos.json` usando lectura asíncrona.
-3. Se ajustó la respuesta de la ruta `/api/student` para devolver JSON correctamente.
-4. Se corrigió el manejo de rutas no encontradas para devolver un 404.
-5. Se verificó que todas las rutas respondieran correctamente desde un cliente.
+1. Adaptar el servidor del Laboratorio 6 para utilizar Express en lugar de la librería nativa `http` de Node.js.
+2. Crear una calculadora funcional utilizando React y Vite.
 
-## Parte 2: cambios realizados
+---
 
-### Ruta `/info`
-Ahora responde un JSON con las propiedades:
-- `mensaje`
-- `curso`
-- `tecnologia`
+## Parte 1 - Servidor con Express
 
-### Ruta `/saludo`
-Se agregó una nueva ruta que responde con un mensaje.
+En esta parte se tomó como base el servidor desarrollado en el Laboratorio 6. Originalmente, el servidor utilizaba la librería nativa `http` de Node.js para manejar las solicitudes y respuestas.
 
-### Ruta `/api/status`
-Se agregó una nueva ruta que responde un JSON con:
-- `ok`
-- `status`
-- `puerto`
+Para este laboratorio, el servidor fue adaptado para utilizar Express. Esto permite manejar las rutas de una forma más clara, ordenada y fácil de mantener.
 
-### Ruta 404
-Se modificó la respuesta 404 para mostrar la ruta que el usuario intentó visitar y no fue encontrada.
+### Rutas disponibles
 
-## Pruebas realizadas
-Las pruebas se realizaron desde el navegador accediendo a `http://localhost:3000`.
+| Ruta | Descripción |
+|---|---|
+| `/` | Muestra un mensaje indicando que el servidor está activo |
+| `/info` | Devuelve información general del laboratorio |
+| `/saludo` | Devuelve un mensaje de saludo |
+| `/api/status` | Devuelve el estado actual del servidor |
+| `/api/student` | Lee y devuelve la información almacenada en `datos.json` |
 
-### Prueba de `http://localhost:3000/`
-Respuesta obtenida:
-`Servidor activo`
-<img width="672" height="173" alt="cap 1" src="https://github.com/user-attachments/assets/752f720a-8624-4186-b551-abb58fb8f5d0" />
+### Ejecutar el servidor
 
+Desde la raíz del proyecto, ejecutar:
 
+```bash
+npm install
+npm start
+```
 
+El servidor se ejecuta en:
 
-### Prueba de `http://localhost:3000/info`
-Respuesta obtenida:
-Un JSON con el mensaje, el curso y la tecnología.
+```text
+http://localhost:3000
+```
 
-<img width="1029" height="193" alt="cap info" src="https://github.com/user-attachments/assets/295c1629-11de-4284-b2d0-f9edc804ce2a" />
+### Probar las rutas
 
+Se pueden probar las rutas desde el navegador o usando `curl` en la terminal:
 
+```bash
+curl http://localhost:3000/
+curl http://localhost:3000/info
+curl http://localhost:3000/saludo
+curl http://localhost:3000/api/status
+curl http://localhost:3000/api/student
+curl http://localhost:3000/ruta-inexistente
+```
 
-### Prueba de `http://localhost:3000/saludo`
-Respuesta obtenida:
-Un mensaje de bienvenida en texto plano.
+### Archivo de documentación
 
-<img width="1017" height="133" alt="cap saludo" src="https://github.com/user-attachments/assets/035f2c45-2291-4059-affa-6ff6b2c94fd3" />
+El archivo `DIFERENCIAS_HTTP_EXPRESS.md` contiene una explicación general sobre las diferencias entre utilizar la librería nativa `http` y utilizar Express en Node.js.
 
+---
 
-### Prueba de `http://localhost:3000/api/status`
-Respuesta obtenida:
-Un JSON con el estado del servidor y el puerto 3000.
+## Parte 2 - Calculadora con React y Vite
 
-<img width="1026" height="191" alt="cap api status" src="https://github.com/user-attachments/assets/c5cf8552-eab4-432a-b685-8570efb5042b" />
+En esta parte se creó una calculadora utilizando React y Vite. La calculadora fue desarrollada con componentes separados para organizar mejor la interfaz y la lógica.
 
+La calculadora permite realizar las operaciones básicas solicitadas:
 
-### Prueba de `http://localhost:3000/api/student`
-Respuesta obtenida:
-Un JSON con los datos almacenados en el archivo `datos.json`.
+- Suma
+- Resta
+- Multiplicación
+- División
 
-<img width="1015" height="204" alt="cap api student" src="https://github.com/user-attachments/assets/4c4d3f23-68c3-45dc-b2ce-0c97f38f50ae" />
+También se agregaron funciones adicionales:
 
+- Limpiar la pantalla
+- Borrar el último dígito
+- Cambiar el signo del número
+- Manejar la división entre cero
 
-### Prueba de ruta inexistente
-Se probó una ruta inexistente y el servidor respondió mostrando la ruta no encontrada con código 404.
+---
 
-<img width="1016" height="135" alt="cap 404" src="https://github.com/user-attachments/assets/94a682ec-fcfb-4d84-b1dd-5dbc54687a5a" />
+## Estructura de la calculadora
 
+```text
+calculadora-react/
+├── src/
+│   ├── components/
+│   │   ├── ButtonPanel.jsx
+│   │   └── Display.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+```
 
-## Tecnologías usadas
+### Componentes principales
+
+| Archivo | Descripción |
+|---|---|
+| `App.jsx` | Contiene la lógica principal de la calculadora |
+| `Display.jsx` | Muestra la operación y el resultado |
+| `ButtonPanel.jsx` | Contiene los botones de la calculadora |
+| `App.css` | Contiene los estilos personalizados de la interfaz |
+| `index.css` | Contiene estilos generales del proyecto |
+
+---
+
+## Ejecutar la calculadora
+
+Desde la raíz del proyecto:
+
+```bash
+npm run dev:react
+```
+
+También se puede ejecutar entrando directamente a la carpeta de React:
+
+```bash
+cd calculadora-react
+npm install
+npm run dev
+```
+
+La aplicación normalmente se ejecuta en:
+
+```text
+http://localhost:5173/
+```
+
+---
+
+## Generar build de React
+
+Desde la raíz del proyecto:
+
+```bash
+npm run build:react
+```
+
+---
+
+## Tecnologías utilizadas
+
 - Node.js
-- módulo `http`
-- módulo `fs/promises`
-- módulo `path`
+- Express
+- React
+- Vite
+- JavaScript
+- HTML
+- CSS
+
+---
+
+## Cambios principales realizados
+
+- Se creó un nuevo repositorio para el Laboratorio 7.
+- Se tomó como base el código del Laboratorio 6.
+- Se instaló Express.
+- Se reemplazó el servidor hecho con `http` por un servidor hecho con Express.
+- Se conservaron las rutas principales del laboratorio anterior.
+- Se creó documentación sobre las diferencias entre `http` y Express.
+- Se creó un proyecto de React con Vite.
+- Se implementó una calculadora funcional.
+- Se personalizó la interfaz de la calculadora con CSS.
+
+---
+
+## Autor
+
+Daniel  
+Curso: Sistemas y Tecnologías Web  
+Universidad del Valle de Guatemala

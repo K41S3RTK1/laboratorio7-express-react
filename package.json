@@ -1,11 +1,14 @@
 {
-  "name": "laboratorio6-node",
+  "name": "laboratorio7-express-react",
   "version": "1.0.0",
-  "description": "Laboratorio 6 de Node.js",
+  "description": "Laboratorio 7 de Sistemas y Tecnologías Web: Express y React con Vite",
   "main": "servidor.js",
   "type": "module",
   "scripts": {
-    "start": "node servidor.js"
+    "start": "node servidor.js",
+    "dev:server": "node servidor.js",
+    "dev:react": "npm --prefix calculadora-react run dev",
+    "build:react": "npm --prefix calculadora-react run build"
   },
   "dependencies": {
     "express": "^5.2.1"
