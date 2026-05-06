@@ -166,6 +166,8 @@ npm run build:react
 - Se personalizó la interfaz de la calculadora con CSS.
 
 ---
+## Link de video: https://youtu.be/GVv8bae5m8M
+---
 
 ## Autor
 
